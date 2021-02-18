@@ -29,6 +29,7 @@ const StyledImg = styled(Img)`
 `
 const DivStyled = styled.div`
   max-width: 600px;
+  width: 50%;
 
   @media only screen and (max-width: 680px) {
     width: 100%;
@@ -77,7 +78,7 @@ const FloatingBallThree = styled.div`
   right: 30%;
   z-index: -1;
 `
-const SpeakingSection = styled.section`
+const StandardSection = styled.section`
   background-color: var(--lightBlue);
   width: 100%;
   padding: 100px;
@@ -90,6 +91,7 @@ const SpeakingSection = styled.section`
 const FlexDiv = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   max-width: 960px;
   margin: 0 auto;
 
@@ -111,8 +113,28 @@ const BoxDiv = styled.div`
 const BlockText = styled.p`
   max-width: 200px;
 `
+const SideImg = styled(Img)`
+  width: 60%;
+  max-width: 250px;
+  min-width: 150px;
+  bottom: 0;
+
+  @media only screen and (max-width: 680px) {
+    margin-top: 50px;
+  }
+`
+const StyledAnchor = styled.a`
+  background-color: var(--lightOrange);
+  color: var(--black);
+  padding: 10px 30px;
+  border-radius: 10px;
+  margin: 20px 20px 0 0;
+  
+`
 
 const IndexPage = ({ data }) => {
+  const emailPierre = () => {}
+
   return (
     <Layout>
       <SEO title="Pierre Paul | Passionate Speaker" />
@@ -131,10 +153,10 @@ const IndexPage = ({ data }) => {
         <FloatingBallTwo />
         <FloatingBallThree />
       </HeroSection>
-      <SpeakingSection>
+      <StandardSection>
         <FlexDiv>
-          <DivStyled>
-            <h2 style={{marginTop: 0,}}>Varied &amp; Engaging</h2>
+          <DivStyled style={{ marginRight: "50px" }}>
+            <h2 style={{ marginTop: 0 }}>Varied &amp; Engaging</h2>
             <p>
               Pierre speaks on a variety of topics and creates a vibrant space
               for people to learn and ask questions. Some of the subject matter
@@ -142,10 +164,13 @@ const IndexPage = ({ data }) => {
               music, history, his immigration experience, and change.
             </p>
           </DivStyled>
-
+          <SideImg fluid={data.side.childImageSharp.fluid} />
         </FlexDiv>
-      </SpeakingSection>
-      <SpeakingSection style={{ backgroundColor: "white" }}>
+      </StandardSection>
+      <StandardSection style={{ backgroundColor: "white" }}>
+        <h2 style={{ marginTop: 0, textAlign: "center", marginBottom: "50px" }}>
+          Well Pierre PBS Special
+        </h2>
         <div className="video-container">
           <iframe
             src="https://www.youtube.com/embed/QsiJOxmyK7Q"
@@ -162,7 +187,23 @@ const IndexPage = ({ data }) => {
             allowfullscreen
           ></iframe>
         </div>
-      </SpeakingSection>
+      </StandardSection>
+      <StandardSection style={{ backgroundColor: "var(--lightOrange)" }}>
+        <DivStyled style={{ marginRight: "50px" }}>
+          <h2 style={{ marginTop: 0, marginBottom: "25px", }}>Contact &amp; Resume</h2>
+          <p>
+            Interested in having Pierre speak at your event? Just want to get to
+            know him better? Send an email his way. He loves to meet new people
+            and learn about new speaking opportunities.
+          </p>
+        </DivStyled>
+        <DivStyled>
+          <StyledAnchor href="mailto:pierrepaul71@gmail.com">
+            Email Pierre
+          </StyledAnchor>
+          <StyledAnchor>Download Resume</StyledAnchor>
+        </DivStyled>
+      </StandardSection>
     </Layout>
   )
 }
@@ -170,6 +211,13 @@ const IndexPage = ({ data }) => {
 export const query = graphql`
   query {
     fileName: file(relativePath: { eq: "Pierre-Tall-Compressed.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    side: file(relativePath: { eq: "pierre-side.jpg" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
