@@ -1,12 +1,9 @@
 import React from "react"
-import { Link } from "gatsby"
 import styled from "styled-components"
-import { AnchorLink } from "gatsby-plugin-anchor-links"
-import Slider from "react-slick"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Resume from "../images/Pierre_Paul_Resume.pdf"
+import Resume from "../assets/Pierre_Paul_Resume.pdf"
 
 import Img from "gatsby-image"
 
