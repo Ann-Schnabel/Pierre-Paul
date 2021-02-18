@@ -2,6 +2,8 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import styled from "styled-components"
+import { AnchorLink } from "gatsby-plugin-anchor-links"
+
 
 const StyledHeader = styled.header`
   display: flex;
@@ -35,7 +37,7 @@ const LiStyled = styled.li`
     }
   }
 `
-const LinkStyled = styled(Link)`
+const LinkStyled = styled(AnchorLink)`
   text-decoration: none;
   color: var(--black);
 
@@ -51,7 +53,7 @@ const LinkStyled = styled(Link)`
     }
   }
 `
-const LinkStyledButton = styled(Link)`
+const LinkStyledButton = styled(AnchorLink)`
   border: none;
   padding: 10px 30px;
   background: var(--orange);
@@ -84,22 +86,26 @@ const BackgroundColorPiece = styled.div`
   top: 0;
   left: 0;
 `
+const StyledAnchorLink = styled(AnchorLink)`
+  text-decoration: none;
+  color: var(--black)
+`
 
 const Header = ({ siteTitle }) => (
   <StyledHeader>
-    <h1>Pierre Paul</h1>
+    <StyledAnchorLink to="/#hero"><h1>Pierre Paul</h1></StyledAnchorLink>
     <UlStyled>
       <LiStyled>
-        <LinkStyled to="/">Speaking</LinkStyled>
+        <LinkStyled to="/#speaking">Speaking</LinkStyled>
       </LiStyled>
       <LiStyled>
-        <LinkStyled to="/">Well Pierre</LinkStyled>
+        <LinkStyled to="/#wellPierre">Well Pierre</LinkStyled>
       </LiStyled>
       <LiStyled>
-        <LinkStyled to="/">Resume</LinkStyled>
+        <LinkStyled to="/#contact">Resume</LinkStyled>
       </LiStyled>
       <LiStyled>
-        <LinkStyledButton to="/">Contact</LinkStyledButton>
+        <LinkStyledButton to="/#contact">Contact</LinkStyledButton>
       </LiStyled>
     </UlStyled>
     <BackgroundColorPiece />

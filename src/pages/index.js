@@ -6,6 +6,7 @@ import Slider from "react-slick"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Resume from "../images/Pierre_Paul_Resume.pdf"
 
 import Img from "gatsby-image"
 
@@ -124,12 +125,33 @@ const SideImg = styled(Img)`
   }
 `
 const StyledAnchor = styled.a`
-  background-color: var(--lightOrange);
+  background-color: var(--orange);
   color: var(--black);
   padding: 10px 30px;
   border-radius: 10px;
-  margin: 20px 20px 0 0;
-  
+  display: inline-block;
+  margin-top: 25px;
+  width: 180px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+
+  & + & {
+    margin-left: 25px;
+
+    @media only screen and (max-width: 680px) {
+      margin-left: 0;
+      display: block;
+      margin-top: 10px;
+    }
+  }
+
+  &:hover {
+    background: white;
+    border: 1px solid var(--orange);
+    color: orange;
+    padding: 9px 29px;
+  }
 `
 
 const IndexPage = ({ data }) => {
@@ -138,7 +160,7 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Pierre Paul | Passionate Speaker" />
-      <HeroSection>
+      <HeroSection id="pierre">
         <StyledImg fluid={data.fileName.childImageSharp.fluid} />
         <DivStyled>
           <h2>Poised &amp; Passionate</h2>
@@ -153,7 +175,7 @@ const IndexPage = ({ data }) => {
         <FloatingBallTwo />
         <FloatingBallThree />
       </HeroSection>
-      <StandardSection>
+      <StandardSection id="speaking">
         <FlexDiv>
           <DivStyled style={{ marginRight: "50px" }}>
             <h2 style={{ marginTop: 0 }}>Varied &amp; Engaging</h2>
@@ -167,7 +189,7 @@ const IndexPage = ({ data }) => {
           <SideImg fluid={data.side.childImageSharp.fluid} />
         </FlexDiv>
       </StandardSection>
-      <StandardSection style={{ backgroundColor: "white" }}>
+      <StandardSection style={{ backgroundColor: "white" }} id="wellPierre">
         <h2 style={{ marginTop: 0, textAlign: "center", marginBottom: "50px" }}>
           Well Pierre PBS Special
         </h2>
@@ -188,21 +210,29 @@ const IndexPage = ({ data }) => {
           ></iframe>
         </div>
       </StandardSection>
-      <StandardSection style={{ backgroundColor: "var(--lightOrange)" }}>
-        <DivStyled style={{ marginRight: "50px" }}>
-          <h2 style={{ marginTop: 0, marginBottom: "25px", }}>Contact &amp; Resume</h2>
+      <StandardSection
+        style={{
+          backgroundColor: "var(--lightOrange)",
+          paddingBottom: "100px",
+        }}
+        id="contact"
+      >
+        <DivStyled style={{ marginRight: "50px", minWidth: "350px" }}>
+          <h2 style={{ marginTop: 0, marginBottom: "25px" }}>
+            Contact &amp; Resume
+          </h2>
           <p>
             Interested in having Pierre speak at your event? Just want to get to
             know him better? Send an email his way. He loves to meet new people
             and learn about new speaking opportunities.
           </p>
         </DivStyled>
-        <DivStyled>
-          <StyledAnchor href="mailto:pierrepaul71@gmail.com">
-            Email Pierre
-          </StyledAnchor>
-          <StyledAnchor>Download Resume</StyledAnchor>
-        </DivStyled>
+        <StyledAnchor href="mailto:pierrepaul71@gmail.com">
+          Email Pierre
+        </StyledAnchor>
+        <StyledAnchor href={Resume} download>
+          Download Resume
+        </StyledAnchor>
       </StandardSection>
     </Layout>
   )
